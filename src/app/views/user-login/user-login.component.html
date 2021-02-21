@@ -1,6 +1,6 @@
 <h2>Login</h2>
 <p>Sign in with your username and password here.</p>
-<form class="flex flex-col w-4/12">
+<form [formGroup]="loginForm" class="flex flex-col w-4/12">
   <mat-form-field appearance="outline">
     <mat-label>Username</mat-label>
     <input
@@ -8,19 +8,20 @@
       formControlName="username"
       autocomplete="username"
       type="text"
-      placeholder="Placeholder"
     />
+    <mat-error *ngIf="loginForm.controls.username.invalid">Username field is empty.</mat-error>
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Password</mat-label>
     <input
       matInput
-      formControlName="username"
+      formControlName="password"
       type="password"
       autocomplete="current-password"
-      placeholder="Placeholder"
     />
+    <mat-error *ngIf="loginForm.controls.password.invalid">Password field is empty.</mat-error>
   </mat-form-field>
   <button mat-raised-button color="primary">Login</button>
 </form>
+<p>{{ loginForm.controls.username.value }}</p>
 <a href="#" class="text-blue-600 block mt-4">New User? Sign up here</a>
