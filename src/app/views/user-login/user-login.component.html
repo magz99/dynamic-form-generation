@@ -1,6 +1,10 @@
 <h2>Login</h2>
 <p>Sign in with your username and password here.</p>
-<form [formGroup]="loginForm" class="flex flex-col w-4/12">
+<form
+  [formGroup]="loginForm"
+  class="flex flex-col w-4/12"
+  (ngSubmit)="onLoginSubmit()"
+>
   <mat-form-field appearance="outline">
     <mat-label>Username</mat-label>
     <input
@@ -9,7 +13,9 @@
       autocomplete="username"
       type="text"
     />
-    <mat-error *ngIf="loginForm.controls.username.invalid">Username field is empty.</mat-error>
+    <mat-error *ngIf="loginForm.controls.username.invalid"
+      >Username field is empty.</mat-error
+    >
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Password</mat-label>
@@ -19,9 +25,18 @@
       type="password"
       autocomplete="current-password"
     />
-    <mat-error *ngIf="loginForm.controls.password.invalid">Password field is empty.</mat-error>
+    <mat-error *ngIf="loginForm.controls.password.invalid"
+      >Password field is empty.</mat-error
+    >
   </mat-form-field>
-  <button mat-raised-button color="primary">Login</button>
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="!loginForm.valid"
+  >
+    Login
+  </button>
 </form>
 <p>{{ loginForm.controls.username.value }}</p>
 <a href="#" class="text-blue-600 block mt-4">New User? Sign up here</a>
