@@ -6,7 +6,8 @@
       "packages/*"
     ],
     "scripts": {
-        "client": "yarn workspace dynamic-form-frontend start"
+        "client": "yarn workspace dynamic-form-frontend start",
+        "server": "yarn workspace nest-server start"
       },
     "repository": {
         "type": "git",
