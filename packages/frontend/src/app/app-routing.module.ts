@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserLoginModule } from './views/user-login/user-login.module';
+import { UserRegistrationModule } from './views/user-registration/user-registration.module';
 
 const routes: Routes = [
   {
@@ -8,6 +9,13 @@ const routes: Routes = [
     loadChildren: (): Promise<UserLoginModule> =>
       import('./views/user-login/user-login.module').then(
         (m): UserLoginModule => m.UserLoginModule
+      ),
+  },
+  {
+    path: 'registration',
+    loadChildren: (): Promise<UserRegistrationModule> =>
+      import('./views/user-registration/user-registration.module').then(
+        (m): UserRegistrationModule => m.UserRegistrationModule
       ),
   },
   {
