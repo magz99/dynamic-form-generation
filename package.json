@@ -1,28 +1,32 @@
 {
-    "name": "dynamic-form-generation",
-    "version": "1.0.0",
-    "private": true,
-    "workspaces": [
-      "packages/*"
-    ],
-    "scripts": {
-        "client": "yarn workspace dynamic-form-frontend start",
-        "server": "yarn workspace nest-server start"
-      },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/magz99/dynamic-form-generation.git"
-      },
-      "keywords": [
-        "node",
-        "angular",
-        "jwt",
-        "reactive forms"
-      ],
-      "author": "Magali Bautista-Lee",
-      "license": "ISC",
-      "bugs": {
-        "url": "https://github.com/magz99/dynamic-form-generation/issues"
-      },
-      "homepage": "https://github.com/magz99/dynamic-form-generation#readme"
+  "name": "dynamic-form-generation",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "client": "yarn workspace dynamic-form-frontend start",
+    "server": "yarn workspace nest-server start",
+    "start": "concurrently --kill-others-on-fail --names \"nest,angular\" -p name --prefix-colors \"yellow,cyan\" \"yarn server\"  \"yarn client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/magz99/dynamic-form-generation.git"
+  },
+  "keywords": [
+    "node",
+    "angular",
+    "jwt",
+    "reactive forms"
+  ],
+  "author": "Magali Bautista-Lee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/magz99/dynamic-form-generation/issues"
+  },
+  "homepage": "https://github.com/magz99/dynamic-form-generation#readme",
+  "dependencies": {
+    "concurrently": "^6.0.0"
+  }
 }
