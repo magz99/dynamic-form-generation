@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-user-login',
@@ -11,7 +12,7 @@ export class UserLoginComponent {
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', Validators.required),
   });
-  constructor() {}
+  constructor(private loginService: LoginService) {}
 
   onLoginSubmit(): void {
     // console.log('username and pw: %s %s', this.loginForm.controls.username.value, this.loginForm.controls.password.value);
@@ -19,6 +20,14 @@ export class UserLoginComponent {
       console.error('the form is not valid');
     } else {
       console.log('The form is valid');
+      this.loginService
+        .login(
+          this.loginForm.controls.username.value,
+          this.loginForm.controls.password.value
+        )
+        .subscribe((result) => {
+          console.log('loginService return: ', result);
+        });
     }
   }
 }
