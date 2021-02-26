@@ -6,6 +6,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { LoginService } from 'src/app/services/login.service';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   imports: [
     SharedModule,
@@ -13,7 +15,9 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    HttpClientModule,
   ],
+  providers: [LoginService],
   declarations: [UserLoginComponent],
 })
 export class UserLoginModule {}
