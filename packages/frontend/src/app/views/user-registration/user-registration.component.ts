@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -6,8 +6,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './user-registration.component.html',
   styleUrls: ['./user-registration.component.scss'],
 })
-export class UserRegistrationComponent implements OnInit {
+export class UserRegistrationComponent {
   registrationError = false;
+  registrationFailure = false;
 
   registrationForm: FormGroup = new FormGroup({
     firstname: new FormControl('', [Validators.required]),
@@ -20,7 +21,5 @@ export class UserRegistrationComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {}
-
-  onRegisterSubmit() {}
+  onRegisterSubmit(): void {}
 }

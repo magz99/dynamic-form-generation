@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, EmptyError, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { LoginPayload } from '../models/login';
+import { LoginPayload } from 'src/app/models/login';
 
 @Injectable({
   providedIn: 'root',
@@ -18,8 +18,7 @@ export class LoginService {
         password,
       })
       .pipe(
-        catchError((err) => {
-          console.log('magz LoginService -> login error');
+        catchError((err: HttpErrorResponse) => {
           throw err;
         })
       );

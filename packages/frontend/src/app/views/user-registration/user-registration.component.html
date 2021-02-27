@@ -1,5 +1,5 @@
 <h2>Registration</h2>
-<p>Create your account to access to the Dynamic Form Creation app.</p>
+<p>Create your account to access to the Dynamic Form Generation app.</p>
 <form
   [formGroup]="registrationForm"
   class="flex flex-col w-4/12"
@@ -51,9 +51,9 @@
   <mat-error
     *ngIf="
       registrationForm.controls.password.dirty &&
-      registrationForm.controls.password.invalid &&
       registrationForm.controls.confirmpassword.dirty &&
-      registrationForm.controls.confirmpassword.invalid
+      registrationForm.controls.password.value !==
+        registrationForm.controls.confirmpassword.value
     "
     >Password fields do not match.</mat-error
   >
@@ -63,9 +63,9 @@
     type="submit"
     [disabled]="!registrationForm.valid"
   >
-    Login
+    Sign Up
   </button>
-  <mat-error class="mt-4" *ngIf="registrationError">
-    Invalid username or password.</mat-error
-  >
 </form>
+<p *ngIf="registrationFailure">
+  There was an issue with the sign up. Please try again later.
+</p>

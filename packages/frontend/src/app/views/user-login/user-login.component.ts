@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoginService } from 'src/app/services/login.service';
+import { LoginService } from './service/login.service';
 
 @Component({
   selector: 'app-user-login',
@@ -28,7 +28,8 @@ export class UserLoginComponent {
         )
         .subscribe(
           (result) => {
-            console.log('loginService return: ', result);
+            console.log('TODO: NAVIGATE TO HOMEPAGE');
+            // this.router.navigate('');
           },
           (err) => {
             console.log('onLoginSubmit() caught error: ', err);
