@@ -37,5 +37,10 @@
   >
     Login
   </button>
+  <mat-error class="mt-4" *ngIf="loginError">
+    Invalid username or password.</mat-error
+  >
 </form>
-<a href="#" class="text-blue-600 block mt-4">New User? Sign up here</a>
+<a routerLink="/registration" class="text-blue-600 block mt-4"
+  >New User? Sign up here</a
+>
