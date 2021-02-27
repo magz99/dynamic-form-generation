@@ -8,14 +8,15 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./user-login.component.scss'],
 })
 export class UserLoginComponent {
+  loginError = false;
   loginForm: FormGroup = new FormGroup({
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', Validators.required),
   });
+
   constructor(private loginService: LoginService) {}
 
   onLoginSubmit(): void {
-    // console.log('username and pw: %s %s', this.loginForm.controls.username.value, this.loginForm.controls.password.value);
     if (this.loginForm.invalid) {
       console.error('the form is not valid');
     } else {
@@ -25,9 +26,15 @@ export class UserLoginComponent {
           this.loginForm.controls.username.value,
           this.loginForm.controls.password.value
         )
-        .subscribe((result) => {
-          console.log('loginService return: ', result);
-        });
+        .subscribe(
+          (result) => {
+            console.log('loginService return: ', result);
+          },
+          (err) => {
+            console.log('onLoginSubmit() caught error: ', err);
+            this.loginError = true;
+          }
+        );
     }
   }
 }

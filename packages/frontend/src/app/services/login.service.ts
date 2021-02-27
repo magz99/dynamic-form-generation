@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { LoginPayload } from '../models/login';
 
 @Injectable({
   providedIn: 'root',
@@ -8,17 +10,18 @@ import { Observable } from 'rxjs';
 export class LoginService {
   constructor(private http: HttpClient) {}
 
-  login(
-    username: string,
-    password: string
-  ): Observable<{ username: string; password: string }> {
-    console.log('Login service -> login() called');
-    return this.http.post<{ username: string; password: string }>(
-      'http://localhost:3000/auth/login',
-      {
+  login(username: string, password: string): Observable<LoginPayload> {
+    console.log('Login service -> login() called!');
+    return this.http
+      .post<LoginPayload>('http://localhost:3000/auth/login', {
         username,
         password,
-      }
-    );
+      })
+      .pipe(
+        catchError((err) => {
+          console.log('magz LoginService -> login error');
+          throw err;
+        })
+      );
   }
 }
