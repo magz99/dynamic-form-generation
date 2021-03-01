@@ -1,71 +1,78 @@
-<h2>Registration</h2>
-<p>Create your account to access to the Dynamic Form Generation app.</p>
-<form
-  [formGroup]="registrationForm"
-  class="flex flex-col w-4/12"
-  (ngSubmit)="onRegisterSubmit()"
-  autocomplete="off"
->
-  <mat-form-field appearance="outline">
-    <mat-label>First Name</mat-label>
-    <input matInput formControlName="firstname" type="text" />
-    <mat-error *ngIf="registrationForm.controls.firstname.invalid"
-      >First Name field is empty.</mat-error
-    >
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Last Name</mat-label>
-    <input matInput formControlName="lastname" type="text" />
-    <mat-error *ngIf="registrationForm.controls.lastname.invalid"
-      >Last Name field is empty.</mat-error
-    >
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Email</mat-label>
-    <input matInput formControlName="email" type="text" />
-    <mat-error *ngIf="registrationForm.controls.email.invalid"
-      >Email field is empty.</mat-error
-    >
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Username</mat-label>
-    <input matInput formControlName="username" type="text" />
-    <mat-error *ngIf="registrationForm.controls.username.invalid"
-      >Username field is empty.</mat-error
-    >
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Password</mat-label>
-    <input matInput formControlName="password" type="password" />
-    <mat-error *ngIf="registrationForm.controls.password.invalid"
-      >Password field is empty.</mat-error
-    >
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Confirm Password</mat-label>
-    <input matInput formControlName="confirmpassword" type="password" />
-    <mat-error *ngIf="registrationForm.controls.confirmpassword.invalid"
-      >Confirm Password field is empty.</mat-error
-    >
-  </mat-form-field>
-  <mat-error
-    *ngIf="
-      registrationForm.controls.password.dirty &&
-      registrationForm.controls.confirmpassword.dirty &&
-      registrationForm.controls.password.value !==
-        registrationForm.controls.confirmpassword.value
-    "
-    >Password fields do not match.</mat-error
+<ng-container *ngIf="registrationSuccess">
+  <h2>Registration</h2>
+  <h3>You have successfully registered!</h3>
+  <p>You will be redirected to the login page shortly.</p>
+</ng-container>
+<ng-container *ngIf="!registrationSuccess">
+  <h2>Registration</h2>
+  <p>Create your account to access to the Dynamic Form Generation app.</p>
+  <form
+    [formGroup]="registrationForm"
+    class="flex flex-col w-4/12"
+    (ngSubmit)="onRegisterSubmit()"
+    autocomplete="off"
   >
-  <button
-    mat-raised-button
-    color="primary"
-    type="submit"
-    [disabled]="!registrationForm.valid"
-  >
-    Sign Up
-  </button>
-</form>
-<p *ngIf="registrationFailure">
-  There was an issue with the sign up. Please try again later.
-</p>
+    <mat-form-field appearance="outline">
+      <mat-label>First Name</mat-label>
+      <input matInput formControlName="firstname" type="text" />
+      <mat-error *ngIf="registrationForm.controls.firstname.invalid"
+        >First Name field is empty.</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Last Name</mat-label>
+      <input matInput formControlName="lastname" type="text" />
+      <mat-error *ngIf="registrationForm.controls.lastname.invalid"
+        >Last Name field is empty.</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="text" />
+      <mat-error *ngIf="registrationForm.controls.email.invalid"
+        >Email field is empty.</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Username</mat-label>
+      <input matInput formControlName="username" type="text" />
+      <mat-error *ngIf="registrationForm.controls.username.invalid"
+        >Username field is empty.</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput formControlName="password" type="password" />
+      <mat-error *ngIf="registrationForm.controls.password.invalid"
+        >Password field is empty.</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Confirm Password</mat-label>
+      <input matInput formControlName="confirmpassword" type="password" />
+      <mat-error *ngIf="registrationForm.controls.confirmpassword.invalid"
+        >Confirm Password field is empty.</mat-error
+      >
+    </mat-form-field>
+    <mat-error
+      *ngIf="
+        registrationForm.controls.password.dirty &&
+        registrationForm.controls.confirmpassword.dirty &&
+        registrationForm.controls.password.value !==
+          registrationForm.controls.confirmpassword.value
+      "
+      >Password fields do not match.</mat-error
+    >
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="!registrationForm.valid"
+    >
+      Sign Up
+    </button>
+  </form>
+  <p *ngIf="registrationError">
+    There was an issue with the sign up. Please try again later.
+  </p>
+</ng-container>
