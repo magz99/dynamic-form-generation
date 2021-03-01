@@ -1,22 +1,22 @@
-import { SERVER_URL } from 'src/app/shared/urls';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { LoginPayload } from 'src/app/models/login';
+import { RegisterResponse } from 'src/app/models/register';
+import { UserDto } from 'src/app/models/user';
+import { SERVER_URL } from 'src/app/shared/urls';
 
 @Injectable({
   providedIn: 'root',
 })
-export class LoginService {
+export class RegisterService {
   constructor(private http: HttpClient) {}
 
-  login(username: string, password: string): Observable<LoginPayload> {
-    console.log('Login service -> login() called!');
+  registerUser(user: UserDto): Observable<RegisterResponse> {
+    console.log('Register service -> registerUser() called!');
     return this.http
-      .post<LoginPayload>(`${SERVER_URL}auth/login`, {
-        username,
-        password,
+      .post<RegisterResponse>(`${SERVER_URL}users/create`, {
+        ...user,
       })
       .pipe(
         catchError((err: HttpErrorResponse) => {
