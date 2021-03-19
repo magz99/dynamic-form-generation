@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LoginService } from './service/login.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class UserLoginComponent {
     password: new FormControl('', Validators.required),
   });
 
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: LoginService, private router: Router) {}
 
   onLoginSubmit(): void {
     if (this.loginForm.invalid) {
@@ -29,7 +30,7 @@ export class UserLoginComponent {
         .subscribe(
           (result) => {
             console.log('TODO: NAVIGATE TO HOMEPAGE');
-            // this.router.navigate('');
+            this.router.navigate(['/dashboard']);
           },
           (err) => {
             console.log('onLoginSubmit() caught error: ', err);
