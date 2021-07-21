@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserDto } from 'src/app/models/user';
+import { passwordMatchValidator } from 'src/app/utils/validators/password-match.directive';
 import { RegisterService } from './service/register.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { RegisterService } from './service/register.service';
   templateUrl: './user-registration.component.html',
   styleUrls: ['./user-registration.component.scss'],
 })
-export class UserRegistrationComponent {
+export class UserRegistrationComponent implements OnInit {
   registrationError = false;
   registrationSuccess = false;
 
@@ -19,13 +20,20 @@ export class UserRegistrationComponent {
     email: new FormControl('', [Validators.required]),
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', Validators.required),
-    confirmpassword: new FormControl('', Validators.required),
+    confirmpassword: new FormControl(''),
   });
 
   constructor(
     private registerService: RegisterService,
     private router: Router
   ) {}
+
+  ngOnInit(): void {
+    this.registrationForm.controls.confirmpassword.setValidators([
+      Validators.required,
+      passwordMatchValidator(this.registrationForm.controls.password),
+    ]);
+  }
 
   onRegisterSubmit(): void {
     const user: UserDto = {
