@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginService } from './service/login.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-user-login',
@@ -15,14 +15,14 @@ export class UserLoginComponent {
     password: new FormControl('', Validators.required),
   });
 
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   onLoginSubmit(): void {
     if (this.loginForm.invalid) {
       console.error('the form is not valid');
     } else {
       console.log('The form is valid');
-      this.loginService
+      this.authService
         .login(
           this.loginForm.controls.username.value,
           this.loginForm.controls.password.value

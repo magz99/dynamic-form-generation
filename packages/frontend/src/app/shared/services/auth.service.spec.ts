@@ -2,17 +2,17 @@
 
 import { HttpClientModule } from '@angular/common/http';
 import { TestBed, async, inject } from '@angular/core/testing';
-import { RegisterService } from './register.service';
+import { AuthService } from './auth.service';
 
-describe('Service: Register', () => {
+describe('Service: Auth', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [RegisterService],
+      providers: [AuthService],
       imports: [HttpClientModule],
     });
   });
 
-  it('should ...', inject([RegisterService], (service: RegisterService) => {
+  it('should ...', inject([AuthService], (service: AuthService) => {
     expect(service).toBeTruthy();
   }));
 });
