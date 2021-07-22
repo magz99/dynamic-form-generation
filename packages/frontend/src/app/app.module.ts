@@ -9,6 +9,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { SharedModule } from './shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +21,7 @@ import { SharedModule } from './shared/shared.module';
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

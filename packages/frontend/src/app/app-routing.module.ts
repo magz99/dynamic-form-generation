@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 import { DashboardModule } from './views/dashboard/dashboard.module';
 import { UserLoginModule } from './views/user-login/user-login.module';
 import { UserRegistrationModule } from './views/user-registration/user-registration.module';
@@ -25,10 +26,11 @@ const routes: Routes = [
       import('./views/dashboard/dashboard.module').then(
         (m): DashboardModule => m.DashboardModule
       ),
+    canActivate: [AuthGuard],
   },
   {
     path: '**',
-    redirectTo: '/dashboard',
+    redirectTo: '/login',
   },
 ];
 
@@ -39,6 +41,7 @@ const routes: Routes = [
       initialNavigation: 'enabled',
     }),
   ],
+  providers: [AuthGuard],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
